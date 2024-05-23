@@ -1,6 +1,6 @@
 package Calculator.Domain.Modelisation;
 
-public class UnitConverter {
+public class UnitConverter implements IUnitConverter {
     public double degreesToRadians(double degrees) {
         return Math.toRadians(degrees);
     }

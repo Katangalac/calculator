@@ -1,6 +1,6 @@
 package Calculator.Domain.Modelisation;
 
-public class NumberConverter {
+public class NumberConverter implements INumberConverter {
     public String decimalToBinary(int decimal) {
         return Integer.toBinaryString(decimal);
     }
