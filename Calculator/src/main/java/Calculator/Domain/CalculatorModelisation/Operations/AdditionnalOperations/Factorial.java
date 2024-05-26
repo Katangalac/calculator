@@ -4,6 +4,10 @@ import Calculator.Domain.CalculatorModelisation.Operations.UnaryOperation;
 
 public class Factorial implements UnaryOperation {
     public double calculate(double a){
+        if(!(Math.floor(a) == Math.ceil(a))){
+            throw new ArithmeticException("Factorial of floating number is undefined.");
+        }
+
         if (a < 0){
             throw new ArithmeticException("Factorial of a negative number is undefined.");
         }

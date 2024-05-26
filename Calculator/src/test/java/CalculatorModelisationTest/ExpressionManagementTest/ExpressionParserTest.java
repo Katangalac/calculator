@@ -1,4 +1,4 @@
-package CalculatorModelisationTest;
+package CalculatorModelisationTest.ExpressionManagementTest;
 import Calculator.Domain.CalculatorModelisation.EpressionManagement.ExpressionParser;
 import org.junit.Test;
 import java.util.List;
@@ -7,7 +7,6 @@ public class ExpressionParserTest {
     @Test
     public void testParseExpression() {
         ExpressionParser parser = new ExpressionParser();
-
 
         List<String> tokens1 = parser.parseExpression("3 - 2");
         assertEquals(List.of("3", "-", "2"), tokens1);
