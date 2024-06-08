@@ -1,8 +1,8 @@
 package Calculator.Domain.CalculatorModelisation.Operations.BasicArithemticOperations;
 
-import Calculator.Domain.CalculatorModelisation.Operations.binaryOperation;
+import Calculator.Domain.CalculatorModelisation.Operations.BinaryOperation;
 
-public class Division implements binaryOperation {
+public class Division implements BinaryOperation {
     public double calculate(double a, double b){
         if(b==0){
             throw new ArithmeticException("Division by zero");

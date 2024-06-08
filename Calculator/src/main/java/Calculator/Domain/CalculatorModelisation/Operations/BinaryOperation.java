@@ -1,5 +1,5 @@
 package Calculator.Domain.CalculatorModelisation.Operations;
 
-public interface binaryOperation {
+public interface BinaryOperation {
     double calculate(double a, double b);
 }

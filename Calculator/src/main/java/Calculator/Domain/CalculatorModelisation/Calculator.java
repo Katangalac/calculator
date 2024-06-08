@@ -12,15 +12,15 @@ import Calculator.Domain.CalculatorModelisation.EpressionManagement.*;
 import java.util.HashMap;
 import java.util.Map;
 public class Calculator {
-    private final Map<String, binaryOperation> binaryOperations = new HashMap<>();
+    private final Map<String, BinaryOperation> binaryOperations = new HashMap<>();
     private final Map<String, UnaryOperation> unaryOperations = new HashMap<>();
-    private final Map<String, MultipleTypeOperation> multiTypeOperations = new HashMap<>();
+    private final Map<String, MultiTypeOperation> multiTypeOperations = new HashMap<>();
     private final INumberConverter numberConverter;
     private final IUnitConverter unitConverter;
-    private final ExpressionParser expressionParser;
+    private final IExpressionParser expressionParser;
     private final ExpressionEvaluator expressionEvaluator;
 
-    public Calculator(INumberConverter numberConverter, IUnitConverter unitConverter, ExpressionParser parser, ExpressionEvaluator evaluator) {
+    public Calculator(INumberConverter numberConverter, IUnitConverter unitConverter, IExpressionParser parser, ExpressionEvaluator evaluator) {
         this.numberConverter = numberConverter;
         this.unitConverter = unitConverter;
         this.expressionParser = parser;
@@ -37,7 +37,7 @@ public class Calculator {
         binaryOperations.put("root", new Root());
         binaryOperations.put("exp", new Exponentiation());
         binaryOperations.put("exp10", new Exp10());
-        //binaryOperations.put("log", new Logarithm());
+        binaryOperations.put("log", new Logarithm());
 
         // unary operations Initialization
         unaryOperations.put("abs", new AbsoluteValue());
@@ -49,9 +49,10 @@ public class Calculator {
         unaryOperations.put("cotan", new CoTangent());
         unaryOperations.put("cosec", new Cosecant());
         unaryOperations.put("sec", new Secant());
+        unaryOperations.put("ln", new Ln());
 
-        // unary and binary operations Initialization
-        multiTypeOperations.put("log", new Logarithm());
+        // multi type operations and binary operations Initialization
+        //multiTypeOperations.put("log", new Logarithm());
     }
 
     public double calculate(String operationName, double... operands) {
@@ -77,26 +78,26 @@ public class Calculator {
         throw new IllegalArgumentException("Unsupported operation: " + operationName);
     }
 
-    public String convertNumber(String conversionType, String value) {
+    public String convertNumber(NumberConversionType conversionType, String value) {
         return switch (conversionType) {
-            case "decimalToBinary" -> numberConverter.decimalToBinary(Integer.parseInt(value));
-            case "binaryToDecimal" -> Integer.toString(numberConverter.binaryToDecimal(value));
-            case "decimalToHexadecimal" -> numberConverter.decimalToHexadecimal(Integer.parseInt(value));
-            case "hexadecimalToDecimal" -> Integer.toString(numberConverter.hexadecimalToDecimal(value));
-            case "binaryToHexadecimal" -> numberConverter.binaryToHexadecimal(value);
-            case "hexadecimalToBinary" -> numberConverter.hexadecimalToBinary(value);
+            case DECIMAL_TO_BINARY -> numberConverter.decimalToBinary(Integer.parseInt(value));
+            case BINARY_TO_DECIMAL -> Integer.toString(numberConverter.binaryToDecimal(value));
+            case DECIMAL_TO_HEXADECIMAL -> numberConverter.decimalToHexadecimal(Integer.parseInt(value));
+            case HEXADECIMAL_TO_DECIMAL -> Integer.toString(numberConverter.hexadecimalToDecimal(value));
+            case BINARY_TO_HEXADECIMAL -> numberConverter.binaryToHexadecimal(value);
+            case HEXADECIMAL_TO_BINARY -> numberConverter.hexadecimalToBinary(value);
             default -> throw new IllegalArgumentException("Unsupported conversion type: " + conversionType);
         };
     }
 
-    public double convertUnit(String conversionType, double value) {
+    public double convertUnit(UnitConversionType conversionType, double value) {
         return switch (conversionType) {
-            case "degreesToRadians" -> unitConverter.degreesToRadians(value);
-            case "radiansToDegrees" -> unitConverter.radiansToDegrees(value);
-            case "degreesToGradians" -> unitConverter.degreesToGradians(value);
-            case "gradiansToDegrees" -> unitConverter.gradiansToDegrees(value);
-            case "radiansToGradians" -> unitConverter.radiansToGradians(value);
-            case "gradiansToRadians" -> unitConverter.gradiansToRadians(value);
+            case DEGREES_TO_RADIANS -> unitConverter.degreesToRadians(value);
+            case RADIANS_TO_DEGREES -> unitConverter.radiansToDegrees(value);
+            case DEGREES_TO_GRADIANS -> unitConverter.degreesToGradians(value);
+            case GRADIANS_TO_DEGREES -> unitConverter.gradiansToDegrees(value);
+            case RADIANS_TO_GRADIANS -> unitConverter.radiansToGradians(value);
+            case GRADIANS_TO_RADIANS -> unitConverter.gradiansToRadians(value);
             default -> throw new IllegalArgumentException("Unsupported conversion type: " + conversionType);
         };
     }
