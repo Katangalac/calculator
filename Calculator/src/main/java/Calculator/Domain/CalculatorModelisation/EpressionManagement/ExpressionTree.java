@@ -58,7 +58,7 @@ public class ExpressionTree {
         Stack<Node> nodeStack = new Stack<>();
         ExpressionParser parser = new ExpressionParser();
         List<String> tokens = parser.parseExpression(expression);
-        System.out.println(tokens);
+
         for(String c : tokens){
             if(c.equals("(")){
                 operatorsStack.push(c);
