@@ -12,9 +12,23 @@ class ExpressionTreeTest {
     @DisplayName("Test of building tree")
     void buildTree() {
         ExpressionTree tree = new ExpressionTree();
-        assertEquals("((3+4)*5)", tree.buildTree("(3+4)*5").toString());
-        assertEquals("(2+3)", tree.buildTree("2+3").toString());
-        assertEquals("((2+3)*(4-1))", tree.buildTree("(2+3)*(4-1)").toString());
-        assertEquals("(((2+3)*4)-5)", tree.buildTree("(2+3)*4-5").toString());
+
+        tree.buildTree("(3 + 4) * 5");
+        assertEquals("((3+4)*5)", tree.getExpression());
+
+        tree.buildTree("2 + 3");
+        assertEquals("(2+3)", tree.getExpression());
+
+        tree.buildTree("(2 + 3) * (4 - 1)");
+        assertEquals("((2+3)*(4-1))", tree.getExpression());
+
+        tree.buildTree("(2 + 3) * 4 - 5");
+        assertEquals("(((2+3)*4)-5)", tree.getExpression());
+
+        tree.buildTree("-2 + 3");
+        assertEquals("(-2+3)", tree.getExpression());
+
+        tree.buildTree("2.5 + -3.86");
+        assertEquals("(2.5+-3.86)", tree.getExpression());
     }
 }

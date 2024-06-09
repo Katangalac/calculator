@@ -4,34 +4,68 @@ import Calculator.Domain.CalculatorModelisation.Operations.BinaryOperation;
 import Calculator.Domain.CalculatorModelisation.Operations.UnaryOperation;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
 public class ExpressionTree {
-    private Map<String, BinaryOperation> binaryOperations = new HashMap<>();
-    private Map<String, UnaryOperation> unaryOperations = new HashMap<>();
-    private Map<Character, Integer> precedenceMap = new HashMap<>();
 
-    public ExpressionTree() {
-        precedenceMap.put('(', 1);
-        precedenceMap.put('+', 2);
-        precedenceMap.put('-', 2);
-        precedenceMap.put('*', 3);
-        precedenceMap.put('/', 3);
+    private static class Node {
+        String value;
+        Node left;
+        Node right;
+        public Node(String value){
+            this.value = value;
+        }
+
+        public String toString(){
+            return toInfixString(this);
+        }
+
+        private String toInfixString(Node node) {
+            if (node == null) {
+                return "";
+            } else if (node.left == null && node.right == null) {
+                return String.valueOf(node.value);
+            } else {
+                String leftString = toInfixString(node.left);
+                String rightString = toInfixString(node.right);
+                return "(" + leftString + node.value + rightString + ")";
+            }
+        }
     }
 
+    private Node root;
+    private Map<String, BinaryOperation> binaryOperations = new HashMap<>();
+    private Map<String, UnaryOperation> unaryOperations = new HashMap<>();
+    private Map<String, Integer> precedenceMap = new HashMap<>();
 
-    public Node buildTree(String expression){
-        Stack<Character> operatorsStack = new Stack<>();
+    public ExpressionTree() {
+        root = null;
+        precedenceMap.put("(", 1);
+        precedenceMap.put("+", 2);
+        precedenceMap.put("-", 2);
+        precedenceMap.put("*", 3);
+        precedenceMap.put("/", 3);
+    }
+
+    public String getExpression() {
+        return root != null ? root.toString() : "";
+    }
+
+    public void buildTree(String expression){
+        Stack<String> operatorsStack = new Stack<>();
         Stack<Node> nodeStack = new Stack<>();
-
-        for(char c : expression.toCharArray()){
-            if(c == '('){
+        ExpressionParser parser = new ExpressionParser();
+        List<String> tokens = parser.parseExpression(expression);
+        System.out.println(tokens);
+        for(String c : tokens){
+            if(c.equals("(")){
                 operatorsStack.push(c);
-            }else if(isNumber(c + "")){
+            }else if(isNumber(c)){
                 nodeStack.push(new Node(c));
-            }else if(c == ')'){
-                while(operatorsStack.peek() != '('){
+            }else if(c.equals(")")){
+                while(!operatorsStack.peek().equals("(")){
                     merge(operatorsStack, nodeStack);
                 }
                 operatorsStack.pop();
@@ -46,10 +80,10 @@ public class ExpressionTree {
         while(nodeStack.size() > 1){
             merge(operatorsStack, nodeStack);
         }
-        return nodeStack.peek();
+        root = nodeStack.peek();
     }
 
-    private void merge(Stack<Character> ops, Stack<Node> nodes){
+    private void merge(Stack<String> ops, Stack<Node> nodes){
         Node root = new Node(ops.pop());
         root.right = nodes.pop();
         root.left = nodes.pop();
@@ -67,5 +101,4 @@ public class ExpressionTree {
     private boolean isBinaryOperator(String token) {
         return binaryOperations.containsKey(token);
     }
-
 }
