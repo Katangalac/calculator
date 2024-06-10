@@ -1,4 +1,4 @@
-package Calculator.Domain.CalculatorModelisation.Operations;
+package Calculator.Domain.CalculatorModelisation.Converters;
 
 public enum NumberConversionType {
     DECIMAL_TO_BINARY,

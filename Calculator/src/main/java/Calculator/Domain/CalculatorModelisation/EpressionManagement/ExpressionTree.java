@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
-public class ExpressionTree {
+public class ExpressionTree implements IExpressionTree{
 
     private static class Node {
         String value;
@@ -36,12 +36,14 @@ public class ExpressionTree {
     }
 
     private Node root;
-    private Map<String, BinaryOperation> binaryOperations = new HashMap<>();
-    private Map<String, UnaryOperation> unaryOperations = new HashMap<>();
-    private Map<String, Integer> precedenceMap = new HashMap<>();
+    private final Map<String, BinaryOperation> binaryOperations;
+    private final Map<String, UnaryOperation> unaryOperations;
+    private final Map<String, Integer> precedenceMap = new HashMap<>();
 
-    public ExpressionTree() {
+    public ExpressionTree(Map<String, BinaryOperation> bOperations, Map<String, UnaryOperation> uOperations) {
         root = null;
+        binaryOperations = bOperations;
+        unaryOperations = uOperations;
         precedenceMap.put("(", 1);
         precedenceMap.put("+", 2);
         precedenceMap.put("-", 2);
@@ -100,5 +102,50 @@ public class ExpressionTree {
 
     private boolean isBinaryOperator(String token) {
         return binaryOperations.containsKey(token);
+    }
+
+    public double evaluate() {
+        return evaluateTree(root);
+    }
+
+    private double evaluateTree(Node node) {
+        if (node == null) {
+            throw new IllegalArgumentException("Node is null");
+        }
+
+        if(node.left == null && node.right == null){
+            return Double.parseDouble(node.value);
+        }
+
+        if(node.left != null && node.right != null){
+            if(isBinaryOperator(node.value)){
+                BinaryOperation op = binaryOperations.get(node.value);
+                double leftEval = evaluateTree(node.left);
+                double rightEval = evaluateTree(node.right);
+                return op.calculate(leftEval, rightEval);
+            }else{
+                throw new UnsupportedOperationException("Unsupported binary operator " + node.value);
+            }
+        }
+
+        if(node.left != null && node.right == null){
+            if(isUnaryOperator(node.value)){
+                UnaryOperation op = unaryOperations.get(node.value);
+                double leftEval = evaluateTree(node.right);
+                return op.calculate(leftEval);
+            }else{
+                throw new UnsupportedOperationException("Unsupported unary operator " + node.value);
+            }
+        }else if(node.left == null && node.right != null){
+            if(isUnaryOperator(node.value)){
+                UnaryOperation op = unaryOperations.get(node.value);
+                double rightEval = evaluateTree(node.right);
+                return op.calculate(rightEval);
+            }else{
+                throw new UnsupportedOperationException("Unsupported unary operator " + node.value);
+            }
+        }
+
+        throw new IllegalStateException("Unexpected state in expression tree at node: " + node.value);
     }
 }

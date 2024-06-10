@@ -1,96 +1,38 @@
 package Calculator.Domain.CalculatorModelisation;
+
 import Calculator.Domain.CalculatorModelisation.Converters.*;
 import Calculator.Domain.CalculatorModelisation.Operations.*;
-import Calculator.Domain.CalculatorModelisation.Operations.BasicArithemticOperations.*;
-import Calculator.Domain.CalculatorModelisation.Operations.AdditionnalOperations.*;
-import Calculator.Domain.CalculatorModelisation.Operations.ExponentialOperations.*;
-import Calculator.Domain.CalculatorModelisation.Operations.LogarithmicOperations.*;
-import Calculator.Domain.CalculatorModelisation.Operations.TrigonometricOperations.*;
 import Calculator.Domain.CalculatorModelisation.EpressionManagement.*;
 
-
-import java.util.HashMap;
 import java.util.Map;
+
 public class Calculator {
-    private final Map<String, BinaryOperation> binaryOperations = new HashMap<>();
-    private final Map<String, UnaryOperation> unaryOperations = new HashMap<>();
-    private final Map<String, MultiTypeOperation> multiTypeOperations = new HashMap<>();
+    private final Map<String, BinaryOperation> binaryOperations;
+    private final Map<String, UnaryOperation> unaryOperations;
     private final INumberConverter numberConverter;
     private final IUnitConverter unitConverter;
-    private final IExpressionParser expressionParser;
-    private final ExpressionEvaluator expressionEvaluator;
+    private final IExpressionTree expressionTree;
 
-    public Calculator(INumberConverter numberConverter, IUnitConverter unitConverter, IExpressionParser parser, ExpressionEvaluator evaluator) {
+    public Calculator(INumberConverter numberConverter, IUnitConverter unitConverter) {
         this.numberConverter = numberConverter;
         this.unitConverter = unitConverter;
-        this.expressionParser = parser;
-        this.expressionEvaluator = evaluator;
-        initializeOperations();
+        this.binaryOperations = OperationsInitializer.initializeBinaryOperations();
+        this.unaryOperations = OperationsInitializer.initializeUnaryOperations();
+        this.expressionTree = new ExpressionTree(binaryOperations, unaryOperations);
     }
 
-    private void initializeOperations(){
-        // binary operations Initialization
-        binaryOperations.put("+", new Addition());
-        binaryOperations.put("-", new Substraction());
-        binaryOperations.put("*", new Multiplication());
-        binaryOperations.put("/", new Division());
-        binaryOperations.put("root", new Root());
-        binaryOperations.put("exp", new Exponentiation());
-        binaryOperations.put("exp10", new Exp10());
-        binaryOperations.put("log", new Logarithm());
-
-        // unary operations Initialization
-        unaryOperations.put("abs", new AbsoluteValue());
-        unaryOperations.put("factorial", new Factorial());
-        unaryOperations.put("negative", new Negative());
-        unaryOperations.put("sin", new Sine());
-        unaryOperations.put("cos", new Cosine());
-        unaryOperations.put("tan", new Tangent());
-        unaryOperations.put("cotan", new CoTangent());
-        unaryOperations.put("cosec", new Cosecant());
-        unaryOperations.put("sec", new Secant());
-        unaryOperations.put("ln", new Ln());
-
-        // multi type operations and binary operations Initialization
-        //multiTypeOperations.put("log", new Logarithm());
-    }
-
-    public double calculate(String operationName, double... operands) {
-        if (unaryOperations.containsKey(operationName)) {
-            if (operands.length != 1) {
-                throw new IllegalArgumentException("Unary operation requires exactly one operand.");
-            }
-            return unaryOperations.get(operationName).calculate(operands[0]);
-        } else if (binaryOperations.containsKey(operationName)) {
-            if (operands.length != 2) {
-                throw new IllegalArgumentException("Binary operation requires exactly two operands.");
-            }
-            return binaryOperations.get(operationName).calculate(operands[0], operands[1]);
-        }else if(multiTypeOperations.containsKey(operationName)){
-            if(operands.length == 1){
-                return multiTypeOperations.get(operationName).calculate(operands[0]);
-            }else if (operands.length == 2){
-                return multiTypeOperations.get(operationName).calculate(operands[0], operands[1]);
-            }else{
-                throw new IllegalArgumentException("Too many operands, one or two operands required.");
-            }
+    public double calculate(String expression) {
+        if (expression == null || expression.trim().isEmpty()) {
+            throw new IllegalArgumentException("Expression cannot be null or empty");
         }
-        throw new IllegalArgumentException("Unsupported operation: " + operationName);
-    }
-
-    public String convertNumber(NumberConversionType conversionType, String value) {
-        return switch (conversionType) {
-            case DECIMAL_TO_BINARY -> numberConverter.decimalToBinary(Integer.parseInt(value));
-            case BINARY_TO_DECIMAL -> Integer.toString(numberConverter.binaryToDecimal(value));
-            case DECIMAL_TO_HEXADECIMAL -> numberConverter.decimalToHexadecimal(Integer.parseInt(value));
-            case HEXADECIMAL_TO_DECIMAL -> Integer.toString(numberConverter.hexadecimalToDecimal(value));
-            case BINARY_TO_HEXADECIMAL -> numberConverter.binaryToHexadecimal(value);
-            case HEXADECIMAL_TO_BINARY -> numberConverter.hexadecimalToBinary(value);
-            default -> throw new IllegalArgumentException("Unsupported conversion type: " + conversionType);
-        };
+        expressionTree.buildTree(expression);
+        return expressionTree.evaluate();
     }
 
     public double convertUnit(UnitConversionType conversionType, double value) {
+        if (conversionType == null) {
+            throw new IllegalArgumentException("Conversion type cannot be null");
+        }
         return switch (conversionType) {
             case DEGREES_TO_RADIANS -> unitConverter.degreesToRadians(value);
             case RADIANS_TO_DEGREES -> unitConverter.radiansToDegrees(value);
@@ -102,5 +44,37 @@ public class Calculator {
         };
     }
 
+    public int convertToDecimal(NumberConversionType conversionType, String expression) {
+        if (conversionType == null) {
+            throw new IllegalArgumentException("Conversion type cannot be null");
+        }
+        return switch (conversionType){
+            case BINARY_TO_DECIMAL -> numberConverter.binaryToDecimal(expression);
+            case HEXADECIMAL_TO_DECIMAL -> numberConverter.hexadecimalToDecimal(expression);
+            default -> throw new IllegalArgumentException("Unsupported conversion to decimal: " + conversionType);
+        };
+    }
+
+    public String convertDecimal(NumberConversionType conversionType, int decimalValue) {
+        if (conversionType == null) {
+            throw new IllegalArgumentException("Conversion type cannot be null");
+        }
+        return switch (conversionType){
+            case DECIMAL_TO_BINARY -> numberConverter.decimalToBinary(decimalValue);
+            case DECIMAL_TO_HEXADECIMAL -> numberConverter.decimalToHexadecimal(decimalValue);
+            default -> throw new IllegalArgumentException("Unsupported conversion for decimal: " + conversionType);
+        };
+    }
+
+    public String convertNonDecimalNumber(NumberConversionType conversionType, String expression) {
+        if (conversionType == null) {
+            throw new IllegalArgumentException("Conversion type cannot be null");
+        }
+        return switch (conversionType){
+            case BINARY_TO_HEXADECIMAL -> numberConverter.binaryToHexadecimal(expression);
+            case HEXADECIMAL_TO_BINARY -> numberConverter.hexadecimalToBinary(expression);
+            default -> throw new IllegalArgumentException("Unsupported conversion for non decimal number: " + conversionType);
+        };
+    }
 }
 
