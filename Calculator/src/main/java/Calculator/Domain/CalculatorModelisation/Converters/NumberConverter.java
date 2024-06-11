@@ -12,7 +12,7 @@ public class NumberConverter implements INumberConverter {
     }
 
     public String decimalToHexadecimal(int decimal) {
-        return Integer.toHexString(decimal);
+        return Integer.toHexString(decimal).toUpperCase();
     }
 
     public int hexadecimalToDecimal(String hexadecimal) {

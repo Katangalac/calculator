@@ -20,7 +20,7 @@ class ExpressionTreeTest {
 
     @Test
     @DisplayName("Test of building tree")
-    void buildTree() {
+    void testBuildTree() {
         Map<String, BinaryOperation> bOperations = new HashMap<>();
         Map<String, UnaryOperation> uOperations = new HashMap<>();
 
@@ -50,7 +50,7 @@ class ExpressionTreeTest {
 
     @Test
     @DisplayName("Evaluate the expression tree")
-    void evaluate() {
+    void testEvaluate() {
         Map<String, BinaryOperation> bOperations = new HashMap<>();
         bOperations.put("+", new Addition());
         bOperations.put("-", new Substraction());
