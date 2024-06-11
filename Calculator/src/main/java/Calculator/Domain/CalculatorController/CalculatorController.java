@@ -18,10 +18,6 @@ public class CalculatorController {
         return calculator.calculate(expression);
     }
 
-    public double calculateExpression(String expression) {
-        return calculator.calculate(expression);
-    }
-
     public double convertUnit(UnitConversionType conversionType, double value) {
         return calculator.convertUnit(conversionType, value);
     }
