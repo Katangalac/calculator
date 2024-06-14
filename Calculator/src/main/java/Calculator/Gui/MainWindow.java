@@ -1,25 +1,22 @@
 package Calculator.Gui;
-import javax.swing.*;
-import java.awt.*;
 
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class MainWindow {
+import java.io.IOException;
 
-    public MainWindow() {
-        JFrame frame = new JFrame("Calculator");
-        frame.setSize(400, 300);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+public class MainWindow extends Application {
+    public void start(Stage primaryStage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(MainWindow.class.getResource("/calculatorFXML/calculator.fxml"));
+        Scene scene = new Scene(loader.load(), 320, 240);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Calculator");
+        primaryStage.setMaximized(true);
+        primaryStage.show();
     }
 
+    public static void main(String[] args) {launch();}
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MainWindow();
-            }
-        });
-    }
 }
