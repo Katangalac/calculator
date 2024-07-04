@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="553.0" prefWidth="423.0" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Pane prefHeight="32.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+   </top>
+   <bottom>
+      <Pane prefHeight="14.0" prefWidth="574.0" BorderPane.alignment="CENTER" />
+   </bottom>
+   <padding>
+      <Insets left="15.0" right="15.0" />
+   </padding>
+   <center>
+      <BorderPane prefHeight="441.0" prefWidth="552.0" styleClass="calculator-shape" stylesheets="@css/styles.css" BorderPane.alignment="CENTER">
+         <top>
+            <TextField prefHeight="81.0" prefWidth="359.0" BorderPane.alignment="CENTER" />
+         </top>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+         <center>
+            <VBox alignment="CENTER" prefHeight="267.0" prefWidth="540.0" spacing="2.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="359.0" spacing="15.0">
+                     <children>
+                        <RadioButton mnemonicParsing="false" text="unit converter" />
+                        <RadioButton mnemonicParsing="false" text="number converter" />
+                        <RadioButton mnemonicParsing="false" text="converter off" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="540.0" spacing="5.0">
+                     <children>
+                        <Spinner prefHeight="30.0" prefWidth="180.0" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="&gt;" />
+                        <Spinner prefHeight="30.0" prefWidth="180.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="540.0" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="A" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="B" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="C" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="D" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="E" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="F" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Clear" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="540.0" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="x^2" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="ln" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="1/x" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="mod" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="ceil" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="floor" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="del" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="540.0" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="x!" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="| x |" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="log" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="(" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text=")" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="\%" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="Ans" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="540.0" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="x10^y" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="x^y" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="√x" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="7" />
+                         <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="8" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="9" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="/" />
+                     </children></HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="540.0" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="sin" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="cos" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="tan" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="4" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="5" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="6" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="x" />
+                     </children></HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="540.0" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="sec" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="cosec" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="cotan" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="1" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="2" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="3" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="-" />
+                     </children></HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="35.0" prefWidth="540.0" spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="+/-" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="e" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="π" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="." />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="0" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="=" />
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="75.0" text="+" />
+                     </children></HBox>
+               </children>
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </VBox>
+         </center>
+      </BorderPane>
+   </center>
+</BorderPane>

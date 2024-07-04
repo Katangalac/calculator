@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Calculator.Gui.MainWindowController">
+   <content>
+      <BorderPane prefHeight="467.0" prefWidth="631.0">
+         <left>
+            <BorderPane prefHeight="400.0" prefWidth="205.0" BorderPane.alignment="CENTER">
+               <top>
+                  <BorderPane prefHeight="39.0" prefWidth="166.0" BorderPane.alignment="CENTER">
+                     <top>
+                        <ImageView fitHeight="49.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER_LEFT">
+                           <image>
+                              <Image url="@../assets/images/logo/logo-2.png" />
+                           </image>
+                           <BorderPane.margin>
+                              <Insets />
+                           </BorderPane.margin>
+                        </ImageView>
+                     </top>
+                  </BorderPane>
+               </top>
+               <center>
+                  <BorderPane prefHeight="361.0" prefWidth="198.0" styleClass="sidebar" stylesheets="@css/styles.css" BorderPane.alignment="CENTER">
+                     <center>
+                        <VBox prefHeight="328.0" prefWidth="241.0" spacing="20.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <HBox fx:id="calculatorMenuButton" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="215.0" spacing="15.0" styleClass="sidebar-item" stylesheets="@css/styles.css">
+                                 <children>
+                                    <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/images/icons/calculatrice%20.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Calculator" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets left="25.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </HBox>
+                              <HBox fx:id="triangleSolverMenuButton" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="215.0" spacing="15.0" styleClass="sidebar-item" stylesheets="@css/styles.css">
+                                 <children>
+                                    <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/images/icons/triangle-2.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fill="#ffffff" strokeType="OUTSIDE" strokeWidth="0.0" text="Triangle solver" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <padding>
+                                    <Insets left="25.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </HBox>
+                              <HBox fx:id="equationSolverMenuButton" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="215.0" spacing="15.0" styleClass="sidebar-item" stylesheets="@css/styles.css">
+                                 <children>
+                                    <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/images/icons/equation.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fill="#fcfcfc" strokeType="OUTSIDE" strokeWidth="0.0" text="Equation solver" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <padding>
+                                    <Insets left="25.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </HBox>
+                              <HBox fx:id="formulasMenuButton" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="215.0" spacing="15.0" styleClass="sidebar-item" stylesheets="@css/styles.css">
+                                 <children>
+                                    <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/images/icons/livre-de-maths.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Formulas" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <padding>
+                                    <Insets left="25.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </HBox>
+                              <HBox fx:id="helpMenuButton" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="215.0" spacing="15.0" styleClass="sidebar-item" stylesheets="@css/styles.css">
+                                 <children>
+                                    <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/images/icons/help-2.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Help" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <padding>
+                                    <Insets left="25.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </HBox>
+                              <HBox fx:id="exitButton" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="215.0" spacing="15.0" styleClass="sidebar-item" stylesheets="@css/styles.css">
+                                 <children>
+                                    <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../assets/images/icons/se-deconnecter.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Arial" size="14.0" />
+                                       </font>
+                                    </Text>
+                                 </children>
+                                 <padding>
+                                    <Insets left="25.0" />
+                                 </padding>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </HBox>
+                           </children>
+                           <BorderPane.margin>
+                              <Insets bottom="45.0" top="45.0" />
+                           </BorderPane.margin>
+                        </VBox>
+                     </center>
+                  </BorderPane>
+               </center>
+            </BorderPane>
+         </left>
+         <center>
+            <BorderPane fx:id="mainContentBorderPane" prefHeight="200.0" prefWidth="200.0" styleClass="main-content-pane" stylesheets="@css/styles.css" BorderPane.alignment="CENTER_LEFT" />
+         </center>
+      </BorderPane>
+   </content>
+</ScrollPane>
