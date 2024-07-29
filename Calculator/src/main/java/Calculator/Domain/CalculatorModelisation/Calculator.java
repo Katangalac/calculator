@@ -1,14 +1,21 @@
 package Calculator.Domain.CalculatorModelisation;
 
 import Calculator.Domain.CalculatorModelisation.Converters.*;
+import Calculator.Domain.CalculatorModelisation.EquationsSolver.*;
 import Calculator.Domain.CalculatorModelisation.Operations.*;
 import Calculator.Domain.CalculatorModelisation.EpressionManagement.*;
+import Calculator.Domain.CalculatorModelisation.TriangleSolver.TriangleSolver;
+import Calculator.Domain.CalculatorModelisation.TriangleSolver.TriangleSolverInitializer;
+import Calculator.Domain.CalculatorModelisation.TriangleSolver.TriangleType;
 
+import java.util.List;
 import java.util.Map;
 
 public class Calculator {
     private final Map<String, BinaryOperation> binaryOperations;
     private final Map<String, UnaryOperation> unaryOperations;
+    private final Map<EquationType, EquationSolver> equationSolvers;
+    private final Map<TriangleType, TriangleSolver> triangleSolvers;
     private final INumberConverter numberConverter;
     private final IUnitConverter unitConverter;
     private final IExpressionTree expressionTree;
@@ -18,6 +25,8 @@ public class Calculator {
         this.unitConverter = unitConverter;
         this.binaryOperations = OperationsInitializer.initializeBinaryOperations();
         this.unaryOperations = OperationsInitializer.initializeUnaryOperations();
+        this.equationSolvers = EquationSolverInitializer.initilializeEquationSolvers();
+        this.triangleSolvers = TriangleSolverInitializer.initilializeTriangleSolvers();
         this.expressionTree = new ExpressionTree(binaryOperations, unaryOperations);
     }
 
@@ -75,6 +84,33 @@ public class Calculator {
             case HEXADECIMAL_TO_BINARY -> numberConverter.hexadecimalToBinary(expression);
             default -> throw new IllegalArgumentException("Unsupported conversion for non decimal number: " + conversionType);
         };
+    }
+
+    public List<Double> solveEquation(EquationType type, List<Double> coefficients){
+        if (type == null) {
+            throw new IllegalArgumentException("Equation type cannot be null");
+        }
+
+        EquationSolver solver = equationSolvers.get(type);
+
+        if (solver == null) {
+            throw new IllegalArgumentException("No solver available for the given equation type: " + type.getSymbol());
+        }
+
+        return solver.solve(coefficients);
+    }
+
+    public List<Double> solveTriangle(TriangleType type, List<Double> features){
+        if (type == null) {
+            throw new IllegalArgumentException("Triangle type cannot be null");
+        }
+
+        TriangleSolver solver = triangleSolvers.get(type);
+
+        if (solver == null) {
+            throw new IllegalArgumentException("No solver available for the given triangle type: " + type.getSymbol());
+        }
+        return solver.solve(features);
     }
 }
 

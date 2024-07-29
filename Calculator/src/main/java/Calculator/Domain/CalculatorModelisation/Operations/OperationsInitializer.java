@@ -14,7 +14,7 @@ public class OperationsInitializer {
         Map<String, BinaryOperation> binaryOperations = new HashMap<>();
         binaryOperations.put("+", new Addition());
         binaryOperations.put("-", new Substraction());
-        binaryOperations.put("*", new Multiplication());
+        binaryOperations.put("x", new Multiplication());
         binaryOperations.put("/", new Division());
         binaryOperations.put("root", new Root());
         binaryOperations.put("exp", new Exponentiation());

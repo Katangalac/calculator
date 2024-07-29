@@ -28,3 +28,110 @@
 .main-content-pane{
     -fx-background-size: cover;
 }
+
+.text-area .scroll-pane .scroll-bar:horizontal,
+.text-area .scroll-pane .scroll-bar:vertical {
+    -fx-opacity: 0;
+    -fx-padding: 0;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+    -fx-background-color: null;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-shape: null;
+    -fx-visibility: collapse;
+    -fx-hbar-policy: never;
+}
+
+.text-area .content {
+    -fx-padding: 0;
+    -fx-alignment: center-right;
+}
+
+.text-area .text {
+    -fx-alignment: center-right;
+    -fx-text-alignment: right;
+}
+
+.coefficient-field{
+    -fx-alignment: center;
+    -fx-pref-height: 25;
+    -fx-pref-width: 50;
+    -fx-font-size: 12px;
+}
+
+.equation-label{
+    -fx-font-size: 14px;
+}
+
+.equation-solution-label{
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #090909;
+}
+
+.equation-solver-hbox{
+    -fx-alignment: center-left;
+    -fx-spacing: 20px;
+}
+
+.equation-solver-inputHbox{
+    -fx-alignment: center;
+    -fx-spacing: 20px;
+}
+
+.triangle-solver-hbox{
+    -fx-alignment: center-left;
+    -fx-spacing: 15px;
+}
+
+.equation-solver-vbox{
+    -fx-alignment: center;
+}
+
+.equation-solution-hbox{
+    -fx-alignment: center-left;
+    -fx-spacing: 15px;
+    -fx-pref-width: 600;
+}
+
+
+.equation-solution-vbox{
+    -fx-spacing: 10px;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: #9e9d9d;
+    -fx-border-radius: 2px;
+}
+
+.equation-solution-title-label{
+    -fx-text-fill: #fbfbfb;
+    -fx-font-weight: bold;
+    -fx-underline: false;
+    -fx-font-size: 14px;
+}
+
+.triangle-solution-label{
+    -fx-font-size: 14px;
+    -fx-text-fill: #090909;
+}
+
+.triangle-solution-vbox{
+    -fx-spacing: 1px;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: #9e9d9d;
+    -fx-border-radius: 2px;
+    -fx-pref-width: 600;
+    -fx-pref-height: 250;
+}
+
+.triangle-remark-label{
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6db502;
+}
+
+.test{
+    -fx-background-color: cyan;
+}

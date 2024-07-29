@@ -26,20 +26,20 @@ class ExpressionTreeTest {
 
         ExpressionTree tree = new ExpressionTree(bOperations, uOperations);
 
-        tree.buildTree("(3 + 4) * 5");
-        assertEquals("((3+4)*5)", tree.getExpression());
+        tree.buildTree("(3 + 4) x 5");
+        assertEquals("((3+4)x5)", tree.getExpression());
 
         tree.buildTree("2 + 3");
         assertEquals("(2+3)", tree.getExpression());
 
-        tree.buildTree("3 + 4 * 5");
-        assertEquals("(3+(4*5))", tree.getExpression());
+        tree.buildTree("3 + 4 x 5");
+        assertEquals("(3+(4x5))", tree.getExpression());
 
-        tree.buildTree("(2 + 3) * (4 - 1)");
-        assertEquals("((2+3)*(4-1))", tree.getExpression());
+        tree.buildTree("(2 + 3) x (4 - 1)");
+        assertEquals("((2+3)x(4-1))", tree.getExpression());
 
-        tree.buildTree("(2 + 3) * 4 - 5");
-        assertEquals("(((2+3)*4)-5)", tree.getExpression());
+        tree.buildTree("(2 + 3) x 4 - 5");
+        assertEquals("(((2+3)x4)-5)", tree.getExpression());
 
         tree.buildTree("-2 + 3");
         assertEquals("(-2+3)", tree.getExpression());
@@ -54,7 +54,7 @@ class ExpressionTreeTest {
         Map<String, BinaryOperation> bOperations = new HashMap<>();
         bOperations.put("+", new Addition());
         bOperations.put("-", new Substraction());
-        bOperations.put("*", new Multiplication());
+        bOperations.put("x", new Multiplication());
         bOperations.put("/", new Division());
 
         Map<String, UnaryOperation> uOperations = new HashMap<>();
@@ -62,19 +62,19 @@ class ExpressionTreeTest {
 
         ExpressionTree tree = new ExpressionTree(bOperations, uOperations);
 
-        tree.buildTree("(3 + 4) * 5");
+        tree.buildTree("(3 + 4) x 5");
         assertEquals(35, tree.evaluate());
 
         tree.buildTree("2 + 3");
         assertEquals(5, tree.evaluate());
 
-        tree.buildTree("3 + 4 * 5");
+        tree.buildTree("3 + 4 x 5");
         assertEquals(23, tree.evaluate());
 
-        tree.buildTree("(2 + 3) * (4 - 1)");
+        tree.buildTree("(2 + 3) x (4 - 1)");
         assertEquals(15, tree.evaluate());
 
-        tree.buildTree("(2 + 3) * 4 - 5");
+        tree.buildTree("(2 + 3) x 4 - 5");
         assertEquals(15, tree.evaluate());
 
         tree.buildTree("-2 + 3");
@@ -86,10 +86,10 @@ class ExpressionTreeTest {
         tree.buildTree("3 + 4 / 5");
         assertEquals(3.8, tree.evaluate(), 0.001);
 
-        tree.buildTree("3 + 4 * 5 / 2");
+        tree.buildTree("3 + 4 x 5 / 2");
         assertEquals(13, tree.evaluate(), 0.001);
 
-        tree.buildTree("(2 + 3 * 5) + (4 - 2 * (5 + 4)) / (15 - 2 * 6.5)");
+        tree.buildTree("(2 + 3 x 5) + (4 - 2 x (5 + 4)) / (15 - 2 x 6.5)");
         assertEquals(10, tree.evaluate());
     }
 }

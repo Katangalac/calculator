@@ -18,16 +18,16 @@ class CalculatorControllerTest {
     void testCalculate() {
         CalculatorController calculatorController = new CalculatorController();
 
-        assertEquals(35, calculatorController.calculate("(3 + 4) * 5"));
+        assertEquals(35, calculatorController.calculate("(3 + 4) x 5"));
         assertEquals(5, calculatorController.calculate("2 + 3"));
-        assertEquals(23, calculatorController.calculate("3 + 4 * 5"));
-        assertEquals(15, calculatorController.calculate("(2 + 3) * (4 - 1)"));
-        assertEquals(15, calculatorController.calculate("(2 + 3) * 4 - 5"));
+        assertEquals(23, calculatorController.calculate("3 + 4 x 5"));
+        assertEquals(15, calculatorController.calculate("(2 + 3) x (4 - 1)"));
+        assertEquals(15, calculatorController.calculate("(2 + 3) x 4 - 5"));
         assertEquals(1, calculatorController.calculate("-2 + 3"));
         assertEquals(-1.36, calculatorController.calculate("2.5 + -3.86"), 0.001);
         assertEquals(3.8, calculatorController.calculate("3 + 4 / 5"), 0.001);
-        assertEquals(13, calculatorController.calculate("3 + 4 * 5 / 2"), 0.001);
-        assertEquals(10, calculatorController.calculate("(2 + 3 * 5) + (4 - 2 * (5 + 4)) / (15 - 2 * 6.5)"));
+        assertEquals(13, calculatorController.calculate("3 + 4 x 5 / 2"), 0.001);
+        assertEquals(10, calculatorController.calculate("(2 + 3 x 5) + (4 - 2 x (5 + 4)) / (15 - 2 x 6.5)"));
     }
 
     @Test

@@ -2,6 +2,10 @@ package Calculator.Domain.CalculatorController;
 
 import Calculator.Domain.CalculatorModelisation.*;
 import Calculator.Domain.CalculatorModelisation.Converters.*;
+import Calculator.Domain.CalculatorModelisation.EquationsSolver.EquationType;
+import Calculator.Domain.CalculatorModelisation.TriangleSolver.TriangleType;
+
+import java.util.List;
 
 public class CalculatorController {
     private final Calculator calculator;
@@ -32,5 +36,13 @@ public class CalculatorController {
 
     public String convertNonDecimalNumber(NumberConversionType conversionType, String expression) {
         return calculator.convertNonDecimalNumber(conversionType, expression);
+    }
+
+    public List<Double> solveEquation(String type, List<Double> coefficients){
+        return calculator.solveEquation(EquationType.fromString(type), coefficients);
+    }
+
+    public List<Double> solveTriangle(String type, List<Double> features){
+        return calculator.solveTriangle(TriangleType.fromString(type), features);
     }
 }

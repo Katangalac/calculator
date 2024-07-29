@@ -29,11 +29,11 @@ class ExpressionParserTest {
     void testParseComplexExpression() {
         ExpressionParser parser = new ExpressionParser();
 
-        List<String> tokens1 = parser.parseExpression("(3 * 2) / (4 + 1)");
-        assertEquals(List.of("(", "3", "*", "2", ")", "/", "(", "4", "+", "1", ")"), tokens1);
+        List<String> tokens1 = parser.parseExpression("(3 x 2) / (4 + 1)");
+        assertEquals(List.of("(", "3", "x", "2", ")", "/", "(", "4", "+", "1", ")"), tokens1);
 
-        List<String> tokens2 = parser.parseExpression("5 - 4 * (5! + 1)");
-        assertEquals(List.of("5", "-", "4", "*", "(", "5", "!", "+", "1", ")"), tokens2);
+        List<String> tokens2 = parser.parseExpression("5 - 4 x (5! + 1)");
+        assertEquals(List.of("5", "-", "4", "x", "(", "5", "!", "+", "1", ")"), tokens2);
     }
 
     @Test
@@ -53,14 +53,14 @@ class ExpressionParserTest {
     void testParseExpressionWithMultipleTypeOfParentheses() {
         ExpressionParser parser = new ExpressionParser();
 
-        List<String> tokens1 = parser.parseExpression("3 * [4 + {5 - 2}]");
-        assertEquals(List.of("3", "*", "[", "4", "+", "{", "5", "-", "2", "}", "]"), tokens1);
+        List<String> tokens1 = parser.parseExpression("3 x [4 + {5 - 2}]");
+        assertEquals(List.of("3", "x", "[", "4", "+", "{", "5", "-", "2", "}", "]"), tokens1);
 
-        List<String> tokens2 = parser.parseExpression("{2 * (6 - [3 / 2])}");
-        assertEquals(List.of("{", "2", "*", "(", "6", "-", "[", "3", "/", "2", "]", ")", "}"), tokens2);
+        List<String> tokens2 = parser.parseExpression("{2 x (6 - [3 / 2])}");
+        assertEquals(List.of("{", "2", "x", "(", "6", "-", "[", "3", "/", "2", "]", ")", "}"), tokens2);
 
-        List<String> tokens3 = parser.parseExpression("(8 / {2 * [4 - (3 + 1)]})");
-        assertEquals(List.of("(", "8", "/", "{", "2", "*", "[", "4", "-", "(", "3", "+", "1", ")", "]", "}", ")"), tokens3);
+        List<String> tokens3 = parser.parseExpression("(8 / {2 x [4 - (3 + 1)]})");
+        assertEquals(List.of("(", "8", "/", "{", "2", "x", "[", "4", "-", "(", "3", "+", "1", ")", "]", "}", ")"), tokens3);
 
     }
 
@@ -68,33 +68,33 @@ class ExpressionParserTest {
     @DisplayName("Parse expression with invalide parentheses")
     void testParseExpressionWithInvalideParentheses() {
         ExpressionParser parser = new ExpressionParser();
-        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("{2 * (6 - [3 / 2])})"));
-        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("(8 / {2 * [(4 - (3 + 1)]})"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("{2 x (6 - [3 / 2])})"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("(8 / {2 x [(4 - (3 + 1)]})"));
     }
 
     @Test
     @DisplayName("Parse expression with invalide brackets")
     void testParseExpressionWithInvalideBrackets() {
         ExpressionParser parser = new ExpressionParser();
-        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("{2 * (6 - [3 / 2]])})"));
-        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("[(8 / {2 * [4 - (3 + 1)]})"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("{2 x (6 - [3 / 2]])})"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("[(8 / {2 x [4 - (3 + 1)]})"));
     }
 
     @Test
     @DisplayName("Parse expression with invalide braces")
     void testParseExpressionWithInvalideBraces() {
         ExpressionParser parser = new ExpressionParser();
-        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("{2 * ({6 - [3 / 2])})"));
-        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("(8 / {2 * [4 - (3 + 1)]})}"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("{2 x ({6 - [3 / 2])})"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("(8 / {2 x [4 - (3 + 1)]})}"));
     }
 
     @Test
     @DisplayName("Parse expression with consecutive operator")
     void testParseExpressionWithConsecutiveOperator() {
         ExpressionParser parser = new ExpressionParser();
-        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("{2 * ({6 -* [3 / 2])})"));
-        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("(8 / {2 * [4 - (3 +- 1)]})}"));
-        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("[(2 * ({6 * [3 / 2])) /+ (8 / {2 * [4 - (3 + 1)]})]"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("{2 x ({6 -x [3 / 2])})"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("(8 / {2 x [4 - (3 +- 1)]})}"));
+        assertThrows(IllegalArgumentException.class, () -> parser.parseExpression("[(2 x ({6 x [3 / 2])) /+ (8 / {2 x [4 - (3 + 1)]})]"));
     }
 
 }

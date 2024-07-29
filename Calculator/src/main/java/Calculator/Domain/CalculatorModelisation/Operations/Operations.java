@@ -5,7 +5,7 @@ package Calculator.Domain.CalculatorModelisation.Operations;
 public enum Operations {
     ADD("+"),
     SUB("-"),
-    MUL("*"),
+    MUL("x"),
     DIV("/"),
     FACT("+!"),
     ABS("abs"),

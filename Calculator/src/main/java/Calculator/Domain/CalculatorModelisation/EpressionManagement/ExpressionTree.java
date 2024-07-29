@@ -47,7 +47,7 @@ public class ExpressionTree implements IExpressionTree{
         precedenceMap.put("(", 1);
         precedenceMap.put("+", 2);
         precedenceMap.put("-", 2);
-        precedenceMap.put("*", 3);
+        precedenceMap.put("x", 3);
         precedenceMap.put("/", 3);
     }
 

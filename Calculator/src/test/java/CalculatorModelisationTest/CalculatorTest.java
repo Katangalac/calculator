@@ -15,16 +15,16 @@ class CalculatorTest {
     void testCalculate() {
         Calculator calculator = new Calculator(new NumberConverter(), new UnitConverter());
 
-        assertEquals(35, calculator.calculate("(3 + 4) * 5"));
+        assertEquals(35, calculator.calculate("(3 + 4) x 5"));
         assertEquals(5, calculator.calculate("2 + 3"));
-        assertEquals(23, calculator.calculate("3 + 4 * 5"));
-        assertEquals(15, calculator.calculate("(2 + 3) * (4 - 1)"));
-        assertEquals(15, calculator.calculate("(2 + 3) * 4 - 5"));
+        assertEquals(23, calculator.calculate("3 + 4 x 5"));
+        assertEquals(15, calculator.calculate("(2 + 3) x (4 - 1)"));
+        assertEquals(15, calculator.calculate("(2 + 3) x 4 - 5"));
         assertEquals(1, calculator.calculate("-2 + 3"));
         assertEquals(-1.36, calculator.calculate("2.5 + -3.86"), 0.001);
         assertEquals(3.8, calculator.calculate("3 + 4 / 5"), 0.001);
-        assertEquals(13, calculator.calculate("3 + 4 * 5 / 2"), 0.001);
-        assertEquals(10, calculator.calculate("(2 + 3 * 5) + (4 - 2 * (5 + 4)) / (15 - 2 * 6.5)"));
+        assertEquals(13, calculator.calculate("3 + 4 x 5 / 2"), 0.001);
+        assertEquals(10, calculator.calculate("(2 + 3 x 5) + (4 - 2 x (5 + 4)) / (15 - 2 x 6.5)"));
     }
 
     @Test
