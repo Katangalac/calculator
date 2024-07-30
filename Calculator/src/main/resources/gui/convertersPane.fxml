@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="convertersPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Calculator.Gui.ConvertersPaneController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="remarkHbox" prefHeight="57.0" prefWidth="600.0">
+               <children>
+                  <Label fx:id="remarkLabel" textFill="#d50202">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="15.0" />
+               </padding></HBox>
+            <HBox alignment="CENTER" prefHeight="189.0" prefWidth="600.0" spacing="15.0">
+               <children>
+                  <VBox prefHeight="159.0" prefWidth="225.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="300.0">
+                           <children>
+                              <Label text="From :">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="300.0">
+                           <children>
+                              <Spinner fx:id="inputTypeSpinner" prefHeight="30.0" prefWidth="190.0" />
+                           </children>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="inputField" prefHeight="30.0" prefWidth="190.0" />
+                           </children>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="189.0" prefWidth="59.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="117.0" prefWidth="59.0" />
+                        <HBox prefHeight="104.0" prefWidth="59.0">
+                           <children>
+                              <Button fx:id="convertButton" mnemonicParsing="false" onAction="#convert" prefHeight="47.0" prefWidth="59.0" styleClass="circleButton" stylesheets="@css/styles.css" text="Convert" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="27.0" layoutY="10.0" prefHeight="189.0" prefWidth="225.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="25.0" prefWidth="300.0">
+                           <children>
+                              <Label text="To :">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="300.0">
+                           <children>
+                              <Spinner fx:id="outputTypeSpinner" prefHeight="30.0" prefWidth="190.0" />
+                           </children>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="outputField" editable="false" prefHeight="30.0" prefWidth="190.0" />
+                           </children>
+                           <padding>
+                              <Insets left="15.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="71.0" prefWidth="600.0" />
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <VBox prefHeight="57.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="27.0" prefWidth="600.0">
+               <children>
+                  <Label text="Select the type of converter you want to use :">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+               </children>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="20.0" prefWidth="600.0" spacing="25.0">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <children>
+                  <RadioButton fx:id="unitConvertButton" mnemonicParsing="false" text="Unit converter">
+                     <font>
+                        <Font size="14.0" />
+                     </font></RadioButton>
+                  <RadioButton fx:id="numberConvertButton" mnemonicParsing="false" text="Number converter">
+                     <font>
+                        <Font size="14.0" />
+                     </font></RadioButton>
+               </children></HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="15.0" />
+         </BorderPane.margin>
+      </VBox>
+   </top>
+</BorderPane>

@@ -168,6 +168,8 @@ public class TriangleSolverPaneController {
         List<HBox> finalSolution = new ArrayList<>();
 
         int gap = 2;
+        int lines = 2;
+
         if(triangleType.equals(TriangleType.ARBITRARY.getSymbol())){
             gap = 3;
         }
@@ -214,8 +216,6 @@ public class TriangleSolverPaneController {
             }
         }
 
-        int lines = 2;
-
         for(int i = 0; i < lines; i++){
             HBox hbox = createGenericHbox();
             hbox.setStyle("-fx-alignment: center-left");
@@ -229,8 +229,6 @@ public class TriangleSolverPaneController {
             if(i*3+2 < finalSolution.size()){
                 hbox.getChildren().addAll(finalSolution.get(i*3+2));
             }
-           // hbox.getChildren().addAll(finalSolution.get(i*3), new Label(" ;"), finalSolution.get(i*3+1),
-            //        new Label(" ;"), finalSolution.get(i*3+2));
             vbox.getChildren().add(hbox);
         }
 

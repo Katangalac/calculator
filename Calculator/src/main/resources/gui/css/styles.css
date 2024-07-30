@@ -6,6 +6,10 @@
     -fx-background-color: #009fe3;
 }
 
+.title-box{
+    -fx-background-color: #009fe3;
+}
+
 .sidebar-item:hover{
     -fx-background-color: #28ccff;
 }
@@ -134,4 +138,9 @@
 
 .test{
     -fx-background-color: cyan;
+}
+
+.circleButton{
+    -fx-border-radius: 25px;
+    -fx-background-radius: 25px;
 }

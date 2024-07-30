@@ -98,10 +98,10 @@
                                  <children>
                                     <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../assets/images/icons/livre-de-maths.png" />
+                                          <Image url="@../assets/images/icons/synchronization%20(1).png" />
                                        </image>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Formulas" textAlignment="CENTER">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Converters" textAlignment="CENTER">
                                        <font>
                                           <Font name="Arial" size="14.0" />
                                        </font>
@@ -118,10 +118,10 @@
                                  <children>
                                     <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../assets/images/icons/help-2.png" />
+                                          <Image url="@../assets/images/icons/livre-de-maths.png" />
                                        </image>
                                     </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Help" textAlignment="CENTER">
+                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Formulas" textAlignment="CENTER">
                                        <font>
                                           <Font name="Arial" size="14.0" />
                                        </font>
@@ -138,7 +138,7 @@
                                  <children>
                                     <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../assets/images/icons/se-deconnecter.png" />
+                                          <Image url="@../assets/images/icons/emergency-exit%20(1).png" />
                                        </image>
                                     </ImageView>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit" textAlignment="CENTER">

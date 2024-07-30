@@ -1,7 +1,5 @@
 package Calculator.Gui;
 
-import Calculator.Domain.CalculatorController.CalculatorController;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.BorderPane;
@@ -109,11 +107,11 @@ public class MainWindowController {
     }
 
     private void handleformulasMenuButtonAction(){
-        loadMainContentPane("/gui/formulasPane.fxml");
+        loadMainContentPane("/gui/convertersPane.fxml");
     }
 
     private void handleHelpMenuButtonAction(){
-        loadMainContentPane("/gui/helpPane.fxml");
+        loadMainContentPane("/gui/formulasPane.fxml");
     }
 
 }
