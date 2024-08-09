@@ -35,7 +35,7 @@
                                  <children>
                                     <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../assets/images/icons/calculatrice%20.png" />
+                                          <Image url="@../assets/images/icons/calculatrice.png" />
                                        </image>
                                     </ImageView>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Calculator" textAlignment="CENTER">
@@ -94,34 +94,14 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </HBox>
-                              <HBox fx:id="formulasMenuButton" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="215.0" spacing="15.0" styleClass="sidebar-item" stylesheets="@css/styles.css">
+                              <HBox fx:id="convertersMenuButton" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="215.0" spacing="15.0" styleClass="sidebar-item" stylesheets="@css/styles.css">
                                  <children>
                                     <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../assets/images/icons/synchronization%20(1).png" />
+                                          <Image url="@../assets/images/icons/convert-2.png" />
                                        </image>
                                     </ImageView>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Converters" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Arial" size="14.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
-                                 <padding>
-                                    <Insets left="25.0" />
-                                 </padding>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </HBox>
-                              <HBox fx:id="helpMenuButton" alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="215.0" spacing="15.0" styleClass="sidebar-item" stylesheets="@css/styles.css">
-                                 <children>
-                                    <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../assets/images/icons/livre-de-maths.png" />
-                                       </image>
-                                    </ImageView>
-                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Formulas" textAlignment="CENTER">
                                        <font>
                                           <Font name="Arial" size="14.0" />
                                        </font>
@@ -138,7 +118,7 @@
                                  <children>
                                     <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../assets/images/icons/emergency-exit%20(1).png" />
+                                          <Image url="@../assets/images/icons/exit.png" />
                                        </image>
                                     </ImageView>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Exit" textAlignment="CENTER">

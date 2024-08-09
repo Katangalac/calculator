@@ -20,6 +20,7 @@ public class OperationsInitializer {
         binaryOperations.put("exp", new Exponentiation());
         binaryOperations.put("exp10", new Exp10());
         binaryOperations.put("log", new Logarithm());
+        binaryOperations.put("%", new Modulo());
         return binaryOperations;
     }
 

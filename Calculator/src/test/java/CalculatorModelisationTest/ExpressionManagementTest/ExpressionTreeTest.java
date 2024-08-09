@@ -7,6 +7,7 @@ import Calculator.Domain.CalculatorModelisation.Operations.BasicArithemticOperat
 import Calculator.Domain.CalculatorModelisation.Operations.BasicArithemticOperations.Multiplication;
 import Calculator.Domain.CalculatorModelisation.Operations.BasicArithemticOperations.Substraction;
 import Calculator.Domain.CalculatorModelisation.Operations.BinaryOperation;
+import Calculator.Domain.CalculatorModelisation.Operations.OperationsInitializer;
 import Calculator.Domain.CalculatorModelisation.Operations.UnaryOperation;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,8 +22,8 @@ class ExpressionTreeTest {
     @Test
     @DisplayName("Test of building tree")
     void testBuildTree() {
-        Map<String, BinaryOperation> bOperations = new HashMap<>();
-        Map<String, UnaryOperation> uOperations = new HashMap<>();
+        Map<String, BinaryOperation> bOperations = OperationsInitializer.initializeBinaryOperations();
+        Map<String, UnaryOperation> uOperations = OperationsInitializer.initializeUnaryOperations();
 
         ExpressionTree tree = new ExpressionTree(bOperations, uOperations);
 
@@ -46,6 +47,7 @@ class ExpressionTreeTest {
 
         tree.buildTree("2.5 + -3.86");
         assertEquals("(2.5+-3.86)", tree.getExpression());
+
     }
 
     @Test
@@ -91,5 +93,8 @@ class ExpressionTreeTest {
 
         tree.buildTree("(2 + 3 x 5) + (4 - 2 x (5 + 4)) / (15 - 2 x 6.5)");
         assertEquals(10, tree.evaluate());
+
+        //tree.buildTree("- (2 + 3)");
+        //assertEquals(-5, tree.evaluate());
     }
 }

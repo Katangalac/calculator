@@ -38,17 +38,11 @@ public class ExpressionTree implements IExpressionTree{
     private Node root;
     private final Map<String, BinaryOperation> binaryOperations;
     private final Map<String, UnaryOperation> unaryOperations;
-    private final Map<String, Integer> precedenceMap = new HashMap<>();
 
     public ExpressionTree(Map<String, BinaryOperation> bOperations, Map<String, UnaryOperation> uOperations) {
         root = null;
         binaryOperations = bOperations;
         unaryOperations = uOperations;
-        precedenceMap.put("(", 1);
-        precedenceMap.put("+", 2);
-        precedenceMap.put("-", 2);
-        precedenceMap.put("x", 3);
-        precedenceMap.put("/", 3);
     }
 
     public String getExpression() {
@@ -72,24 +66,41 @@ public class ExpressionTree implements IExpressionTree{
                 }
                 operatorsStack.pop();
             }else{
-                while(!operatorsStack.isEmpty() && precedenceMap.get(operatorsStack.peek()) >= precedenceMap.get(c)){
+                while(!operatorsStack.isEmpty() && precedence(operatorsStack.peek()) >= precedence(c)){
                     merge(operatorsStack, nodeStack);
                 }
                 operatorsStack.push(c);
             }
         }
 
-        while(nodeStack.size() > 1){
-            merge(operatorsStack, nodeStack);
+        while(!nodeStack.isEmpty()){
+            if(!operatorsStack.isEmpty()){
+                merge(operatorsStack, nodeStack);
+            }else{
+                break;
+            }
         }
         root = nodeStack.peek();
     }
 
     private void merge(Stack<String> ops, Stack<Node> nodes){
-        Node root = new Node(ops.pop());
+        String op = ops.pop();
+        Node root = new Node(op);
         root.right = nodes.pop();
-        root.left = nodes.pop();
+        if(isBinaryOperator(op)){
+            root.left = nodes.pop();
+        }
         nodes.push(root);
+    }
+
+    private int precedence(String op){
+        return switch (op) {
+            case "exp" -> 4;
+            case "x", "/", "%" -> 3;
+            case "(" -> 1;
+            default -> 2;
+
+        };
     }
 
     private boolean isNumber(String token) {
@@ -102,6 +113,19 @@ public class ExpressionTree implements IExpressionTree{
 
     private boolean isBinaryOperator(String token) {
         return binaryOperations.containsKey(token);
+    }
+
+    private boolean isFunction(String token){
+        return switch(token){
+            case "sin" -> true;
+            case "cos" -> true;
+            case "cosec" -> true;
+            case "sec" -> true;
+            case "tan" -> true;
+            case "cotan" -> true;
+            case "ln" -> true;
+            default -> false;
+        };
     }
 
     public double evaluate() {

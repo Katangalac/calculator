@@ -25,10 +25,7 @@ public class MainWindowController {
     private HBox triangleSolverMenuButton;
 
     @FXML
-    private HBox formulasMenuButton;
-
-    @FXML
-    private HBox helpMenuButton;
+    private HBox convertersMenuButton;
 
     @FXML
     private HBox exitButton;
@@ -61,17 +58,10 @@ public class MainWindowController {
             }
         });
 
-        formulasMenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        convertersMenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
                 handleformulasMenuButtonAction();
-            }
-        });
-
-        helpMenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                handleHelpMenuButtonAction();
             }
         });
 

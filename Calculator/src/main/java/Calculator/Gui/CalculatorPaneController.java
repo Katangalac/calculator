@@ -1,50 +1,24 @@
 package Calculator.Gui;
 
 import Calculator.Domain.CalculatorController.CalculatorController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 import javafx.event.ActionEvent;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class CalculatorPaneController {
 
     @FXML
     private TextField screen;
 
-    @FXML
-    private RadioButton unitConvertButton;
 
-    @FXML
-    private RadioButton numberConvertButton;
-
-    @FXML
-    private RadioButton convertOffButton;
-
-    @FXML
-    private Spinner<String> inputTypeSpinner;
-
-    @FXML
-    private Spinner<String> outputTypeSpinner;
-
-    private CalculatorController calculatorController = new CalculatorController();
-    private List<String> unitList = new ArrayList<>();
-    private List<String> numberList = new ArrayList<>();
+    private final CalculatorController calculatorController = new CalculatorController();
     private double previousAnswer;
+    private int caretPosition;
+    private boolean needClear;
 
     @FXML
     public void initialize() {
         initializeScreen();
-        initializeSpinnerList();
-        initializeConvertButton();
     }
 
     @FXML
@@ -53,8 +27,8 @@ public class CalculatorPaneController {
         String buttonText = sourceButton.getText();
         String spacing = "";
 
-        Boolean needPrint = true;
-
+        boolean needPrint = true;
+        //"⌈𝑥⌉" "⌊𝑥⌋"
         switch (buttonText) {
             case "=":
                 calculate();
@@ -66,7 +40,7 @@ public class CalculatorPaneController {
                 clear();
                 break;
 
-            case "Del":
+            case "Delete":
                 needPrint = false;
                 deleteOneCharacter();
                 break;
@@ -75,7 +49,7 @@ public class CalculatorPaneController {
             case "-":
             case "x":
             case "/":
-            case "mod":
+            case "%":
                 spacing = " ";
                 break;
 
@@ -85,21 +59,22 @@ public class CalculatorPaneController {
             case "cotan":
             case "sec":
             case "cosec":
-            case "log":
             case "ln":
                 buttonText = buttonText + "()";
                 break;
-
+            case "log":
+                buttonText = "log(,)";
+                break;
             case "𝑥!":
                 buttonText = "!";
                 break;
 
-            case "⌈𝑥⌉":
-                buttonText = "⌈()⌉";
+            case "ceil":
+                buttonText = "ceil()";
                 break;
 
-            case "⌊𝑥⌋":
-                buttonText = "⌊()⌋";
+            case "floor":
+                buttonText = "floor()";
                 break;
 
             case "| 𝑥 |":
@@ -117,6 +92,9 @@ public class CalculatorPaneController {
                 buttonText = "-";
                 break;
 
+            case "Ans":
+                buttonText = Double.toString(previousAnswer);
+                break;
             default:
                 break;
         }
@@ -126,118 +104,53 @@ public class CalculatorPaneController {
         }
     }
 
-    private void initializeInputSpinner() {
-        List<String> optionsList = new ArrayList<>();
-        if(unitConvertButton.isSelected()) {
-            optionsList = unitList;
-            inputTypeSpinner.setDisable(false);
-        } else if (numberConvertButton.isSelected()) {
-            optionsList = numberList;
-            inputTypeSpinner.setDisable(false);
-        }else if (convertOffButton.isSelected()) {
-            optionsList = List.of("None");
-            inputTypeSpinner.setDisable(true);
-        }
-
-        ObservableList<String> options = FXCollections.observableArrayList(
-                optionsList
-        );
-        SpinnerValueFactory<String> valueFactory = new SpinnerValueFactory.ListSpinnerValueFactory<>(options);
-        valueFactory.setValue(optionsList.get(optionsList.size() - 1));
-        inputTypeSpinner.setValueFactory(valueFactory);
-        inputTypeSpinner.valueProperty().addListener((observable, oldValue, newValue) -> {
-        });
-    }
-
-    private void initializeOutputSpinner() {
-        List<String> optionsList = new ArrayList<>();
-        if(unitConvertButton.isSelected()) {
-            optionsList = unitList;
-            outputTypeSpinner.setDisable(false);
-        } else if (numberConvertButton.isSelected()) {
-            optionsList = numberList;
-            outputTypeSpinner.setDisable(false);
-        }else if (convertOffButton.isSelected()) {
-            optionsList = List.of("None");
-            outputTypeSpinner.setDisable(true);
-        }
-
-        ObservableList<String> options = FXCollections.observableArrayList(
-                optionsList
-        );
-        SpinnerValueFactory<String> valueFactory = new SpinnerValueFactory.ListSpinnerValueFactory<>(options);
-        valueFactory.setValue(optionsList.get(optionsList.size() - 1));
-        outputTypeSpinner.setValueFactory(valueFactory);
-        outputTypeSpinner.valueProperty().addListener((observable, oldValue, newValue) -> {
-        });
-    }
-
     private void initializeScreen() {
+        needClear = false;
         screen.setText("");
+        screen.caretPositionProperty().addListener((obs, oldPos, newPos) -> {
+            int caretPosition;
+            if(newPos.intValue() > 0){
+                caretPosition = newPos.intValue();
+                this.caretPosition = caretPosition;
+            }
+            System.out.println("Caret position: " + this.caretPosition);
+        });
     }
 
-    private void initializeConvertButton() {
-        unitConvertButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                convertButtonsActions(true, false, false);
-            }
-        });
 
-        numberConvertButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                convertButtonsActions(false, true, false);
-            }
-        });
-
-        convertOffButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                convertButtonsActions(false, false, true);
-            }
-        });
-
-        convertButtonsActions(false, false, true);
-    }
-
-    private void initializeSpinnerList(){
-        unitList.add("Gradians");
-        unitList.add("Radians");
-        unitList.add("Degrees");
-
-        numberList.add("Hexadecimal");
-        numberList.add("Binary");
-        numberList.add("Decimal");
-    }
 
     private void printOnScreen(String text, String spacing) {
-        screen.setText(screen.getText() + spacing + text + spacing);
+        if(needClear){
+            clear();
+        }
+        int pos = this.caretPosition;
+        String currentText = screen.getText();
+        String upgradedText = spacing + text + spacing;
+        String newText = currentText.substring(0,pos) + upgradedText + currentText.substring(pos);
+        screen.setText(newText);
+        screen.positionCaret(pos + upgradedText.length());
     }
 
     private void clear(){
+        needClear = false;
         screen.setText("");
+        this.caretPosition = 0;
     }
 
     private void deleteOneCharacter(){
         screen.setText(screen.getText().substring(0, screen.getText().length()-1));
     }
 
-    private void convertButtonsActions(Boolean unitConvertState, Boolean numberConvertState, Boolean convertOffState){
-        unitConvertButton.setSelected(unitConvertState);
-        numberConvertButton.setSelected(numberConvertState);
-        convertOffButton.setSelected(convertOffState);
-        initializeInputSpinner();
-        initializeOutputSpinner();
-    }
 
     private void calculate(){
         String expression = screen.getText();
-        if(expression.equals("")){
+        if(expression.isEmpty()){
             previousAnswer = 0;
         }else{
             previousAnswer = calculatorController.calculate(expression);
         }
         screen.setText(String.valueOf(previousAnswer));
+        needClear = true;
     }
+
 }

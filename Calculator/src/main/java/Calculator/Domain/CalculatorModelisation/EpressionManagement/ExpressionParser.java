@@ -16,7 +16,7 @@ public class ExpressionParser implements IExpressionParser {
         List<String> tokens = new ArrayList<>();
 
         String pattern = "(\\d+\\.?\\d*|-\\d+\\.?\\d*)" +
-                         "|([\\+\\-x/(){}!,\\[\\]])" +
+                         "|([\\+\\-x/(){}!%,\\[\\]])" +
                          "|(log|root|exp|exp10|sin|cos|tan|cotan|sec|cosec|neg|abs|ln)";
 
         Matcher matcher = Pattern.compile(pattern).matcher(expression);
@@ -69,6 +69,6 @@ public class ExpressionParser implements IExpressionParser {
     }
 
     private boolean isOperator(char character) {
-        return character == '+' || character == '-' || character == '*' || character == '/' || character == '%' || character == '!';
+        return character == '+' || character == '-' || character == 'x' || character == '/' || character == '%' || character == '!';
     }
 }

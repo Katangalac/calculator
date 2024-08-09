@@ -4,6 +4,6 @@ import Calculator.Domain.CalculatorModelisation.Operations.UnaryOperation;
 
 public class Sine implements UnaryOperation {
     public double calculate(double a){
-        return Math.sin(a);
+        return Math.sin(Math.toRadians(a));
     }
 }
