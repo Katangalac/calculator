@@ -10,7 +10,6 @@ public class CalculatorPaneController {
     @FXML
     private TextField screen;
 
-
     private final CalculatorController calculatorController = new CalculatorController();
     private double previousAnswer;
     private int caretPosition;
@@ -113,7 +112,6 @@ public class CalculatorPaneController {
                 caretPosition = newPos.intValue();
                 this.caretPosition = caretPosition;
             }
-            System.out.println("Caret position: " + this.caretPosition);
         });
     }
 
@@ -149,8 +147,20 @@ public class CalculatorPaneController {
         }else{
             previousAnswer = calculatorController.calculate(expression);
         }
-        screen.setText(String.valueOf(previousAnswer));
+        String result = String.valueOf(previousAnswer);
+        screen.setText(removeDecimalPart(result));
         needClear = true;
     }
+
+    private String removeDecimalPart(String result){
+        String[] parts = result.split("\\.");
+        if(parts.length == 2){
+            if(parts[1].equals("0")){
+                return parts[0];
+            }
+        }
+        return result;
+    }
+
 
 }

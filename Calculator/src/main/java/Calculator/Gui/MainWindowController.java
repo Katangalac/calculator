@@ -61,7 +61,7 @@ public class MainWindowController {
         convertersMenuButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                handleformulasMenuButtonAction();
+                handleConvertersMenuButtonAction();
             }
         });
 
@@ -96,12 +96,8 @@ public class MainWindowController {
         loadMainContentPane("/gui/triangleSolverPane.fxml");
     }
 
-    private void handleformulasMenuButtonAction(){
+    private void handleConvertersMenuButtonAction(){
         loadMainContentPane("/gui/convertersPane.fxml");
-    }
-
-    private void handleHelpMenuButtonAction(){
-        loadMainContentPane("/gui/formulasPane.fxml");
     }
 
 }

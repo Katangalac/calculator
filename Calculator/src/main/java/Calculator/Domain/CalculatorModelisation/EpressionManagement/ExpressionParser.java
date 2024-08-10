@@ -29,6 +29,11 @@ public class ExpressionParser implements IExpressionParser {
             }
         }
 
+        if(!tokens.isEmpty()){
+            if(tokens.get(0).equals("-")){
+                tokens.add(0, "0");
+            }
+        }
         return tokens;
     }
 
