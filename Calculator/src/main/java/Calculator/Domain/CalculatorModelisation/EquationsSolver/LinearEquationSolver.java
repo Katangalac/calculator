@@ -9,7 +9,7 @@ public class LinearEquationSolver implements EquationSolver{
     @Override
     public List<Double> solve(List<Double> coefficients) {
         if (coefficients.size() != 2) {
-            throw new IllegalArgumentException("Wrong number of coefficients");
+            throw new IllegalArgumentException("Wrong number of coefficients!");
         }
 
         List<Double> solutions = new ArrayList<Double>();
@@ -17,7 +17,7 @@ public class LinearEquationSolver implements EquationSolver{
         double b = coefficients.get(1);
 
         if(a == 0){
-            throw new IllegalArgumentException("No solution found");
+            throw new IllegalArgumentException("No solution found!");
         }
 
         if(b == 0){

@@ -393,26 +393,26 @@ public class TriangleSolverPaneController {
         for(TextField textField : textFields){
             if(!textField.getText().isEmpty()){
                 if(!containsOnlyDigits(textField.getText())){
-                    throw new IllegalArgumentException("The field must contains only positive digits");
+                    throw new IllegalArgumentException("The field must contains only positive digits!");
                 }
                 if(Double.parseDouble(textField.getText()) <= 0){
-                    throw new IllegalArgumentException("The field must contain positive numbers greater than 0");
+                    throw new IllegalArgumentException("The field must contain positive numbers greater than 0!");
                 }
                 filled ++;
             }
             if(filled > 2 && triangleType.equals(TriangleType.RIGHT.getSymbol())){
-                throw new IllegalArgumentException("Too much values given! Provide exactly 2 values to calculate the solution");
+                throw new IllegalArgumentException("Too much values given! Provide exactly 2 values to calculate the solution.");
             }
             else if(filled > 3 && triangleType.equals(TriangleType.ARBITRARY.getSymbol())){
-                throw new IllegalArgumentException("Too much values given! Provide exactly 3 values to calculate the solution");
+                throw new IllegalArgumentException("Too much values given! Provide exactly 3 values to calculate the solution.");
             }
         }
 
         if(filled < 2 && triangleType.equals(TriangleType.RIGHT.getSymbol())){
-            throw new IllegalArgumentException("You must provide 2 values to calculate the solution");
+            throw new IllegalArgumentException("You must provide 2 values to calculate the solution!");
         }
         else if(filled < 3 && triangleType.equals(TriangleType.ARBITRARY.getSymbol())){
-            throw new IllegalArgumentException("You must provide 3 values to calculate the solution");
+            throw new IllegalArgumentException("You must provide 3 values to calculate the solution!");
         }
 
     }

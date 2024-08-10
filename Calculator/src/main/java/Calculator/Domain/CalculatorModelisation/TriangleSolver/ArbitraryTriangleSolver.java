@@ -34,7 +34,7 @@ public class ArbitraryTriangleSolver implements TriangleSolver {
                 beta = Math.toDegrees(Math.acos((a * a + c * c - b * b) / (2 * a * c)));
                 gamma = 180.0 - alpha - beta;
             }else{
-                throw new IllegalArgumentException("cos(𝛼) must be between -1 and 1 but was " + cosAlpha);
+                throw new IllegalArgumentException("cos(𝛼) must be between -1 and 1 but was " + cosAlpha + "!");
             }
         }else if(a > 0 && b > 0 && alphaDegrees > 0) {
             checkAngleValidity(alphaDegrees, "𝛼");
@@ -193,19 +193,19 @@ public class ArbitraryTriangleSolver implements TriangleSolver {
 
     private void checkAngleValidity(double angle, String angleText){
         if(angle >= 180){
-            throw new IllegalArgumentException(angleText + " cannot be greater or equal to 90 (degrees)");
+            throw new IllegalArgumentException(angleText + " cannot be greater or equal to 90 (degrees)!");
         }
     }
 
     private void checkAngleConstraint(double angle1, double angle2){
         if(angle1 + angle2 >= 180){
-            throw new IllegalArgumentException("The sum of 2 angles cannot be greater or equal to 180 (degrees)");
+            throw new IllegalArgumentException("The sum of 2 angles cannot be greater or equal to 180 (degrees)!");
         }
     }
 
     private void checkSidesConstraints(double a, double b, double c){
         if(a + b >= c){
-            throw new IllegalArgumentException("The sum of 2 sides must be larger than the third (base)");
+            throw new IllegalArgumentException("The sum of 2 sides must be larger than the third (base)!");
         }
     }
 

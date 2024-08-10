@@ -9,7 +9,7 @@ public class QuadraticEquationSolver implements EquationSolver{
     @Override
     public List<Double> solve(List<Double>coefficients) {
         if (coefficients.size() != 3){
-            throw new IllegalArgumentException("Wrong number of coefficients");
+            throw new IllegalArgumentException("Wrong number of coefficients!");
         }
 
         List<Double> solutions = new ArrayList<Double>();
@@ -30,7 +30,7 @@ public class QuadraticEquationSolver implements EquationSolver{
         } else if (discriminent == 0) {
             solutions.add(-b/2*a);
         }else if (discriminent < 0){
-            throw new IllegalArgumentException("This equation has no solution in R");
+            throw new IllegalArgumentException("This equation has no solution in R!");
         }
         roundAll(solutions);
         return solutions;

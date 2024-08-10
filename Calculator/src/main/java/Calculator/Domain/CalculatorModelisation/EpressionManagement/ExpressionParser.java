@@ -10,7 +10,7 @@ public class ExpressionParser implements IExpressionParser {
     public List<String> parseExpression(String expression) {
 
         if(!isValide(expression)){
-            throw new IllegalArgumentException("Invalid expression");
+            throw new IllegalArgumentException("Error invalid expression!");
         }
 
         List<String> tokens = new ArrayList<>();

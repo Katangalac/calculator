@@ -5,7 +5,7 @@ import Calculator.Domain.CalculatorModelisation.Operations.BinaryOperation;
 public class Division implements BinaryOperation {
     public double calculate(double a, double b){
         if(b==0){
-            throw new ArithmeticException("Division by zero");
+            throw new ArithmeticException("Error division by zero!");
         }
         else if(a == 0){
             return 0;

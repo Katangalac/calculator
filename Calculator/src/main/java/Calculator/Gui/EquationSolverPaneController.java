@@ -250,7 +250,7 @@ public class EquationSolverPaneController {
                 solutionBox.getChildren().add(label);
             }
         }else{
-            Label label = new Label("All the empty fields need to be filled with number to solve the equation !");
+            Label label = new Label("All empty fields need to be filled with number to solve the equation!");
             label.getStyleClass().add("equation-solution-label");
             label.setStyle("-fx-text-fill: #d50202;");
             solutionBox.getChildren().add(label);

@@ -26,7 +26,7 @@ public class RightTriangleSolver implements TriangleSolver {
 
         if(alphaDegrees > 0 && betaDegrees > 0){
             throw new IllegalArgumentException("Cannot solve based on angles. Need one side with an angle, two sides or " +
-                    "the height and an angle to solve");
+                    "the height and an angle to solve!");
         }
         if (a > 0 && b > 0) {
             c = Math.sqrt(a * a + b * b);
@@ -133,22 +133,22 @@ public class RightTriangleSolver implements TriangleSolver {
 
     private void checkAngleValidity(double angle, String angleText){
         if(angle >= 90){
-            throw new IllegalArgumentException(angleText + " cannot be greater or equal to 90 (degrees)");
+            throw new IllegalArgumentException(angleText + " cannot be greater or equal to 90 (degrees)!");
         }
     }
 
     private void checkHypothenuseConstraint(double side, double hypothenus, String sideText, String hypothenuseText){
         if((side >= (hypothenus / 2) || side >= hypothenus) && sideText.equals("h")){
-            throw new IllegalArgumentException(sideText + " cannot be greater or equal to half the size of " + hypothenuseText);
+            throw new IllegalArgumentException(sideText + " cannot be greater or equal to half the size of " + hypothenuseText + "!");
         }
         if(side >= hypothenus){
-            throw new IllegalArgumentException(sideText + " cannot be greater or equal to " + hypothenuseText);
+            throw new IllegalArgumentException(sideText + " cannot be greater or equal to " + hypothenuseText + "!");
         }
     }
 
     private void checkHeightConstraint(double side, double height, String heightText, String sideText){
         if(height > side){
-            throw new IllegalArgumentException(heightText + " cannot be greater or equal to " + sideText);
+            throw new IllegalArgumentException(heightText + " cannot be greater or equal to " + sideText + "!");
         }
     }
 

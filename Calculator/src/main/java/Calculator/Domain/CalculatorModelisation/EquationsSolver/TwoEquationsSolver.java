@@ -9,7 +9,7 @@ public class TwoEquationsSolver implements EquationSolver{
     @Override
     public List<Double> solve(List<Double> coefficients) {
         if(coefficients.size() != 6){
-            throw new IllegalArgumentException("Wrong number of coefficients");
+            throw new IllegalArgumentException("Wrong number of coefficients!");
         }
 
         List<Double> solutions = new ArrayList<Double>();
@@ -24,7 +24,7 @@ public class TwoEquationsSolver implements EquationSolver{
         double d = a1 * b2 - a2 * b1;
 
         if(d == 0){
-            throw new IllegalArgumentException("No solution found");
+            throw new IllegalArgumentException("No solution found!");
         }
 
         double dx = c1 * b2 - c2 * b1;

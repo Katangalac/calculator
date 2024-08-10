@@ -121,7 +121,7 @@ public class ConvertersPaneController {
 
     private void checkSpinners(){
         if(inputTypeSpinner.getValue().equals(outputTypeSpinner.getValue())){
-            throw new IllegalArgumentException("Input type and output type must be different");
+            throw new IllegalArgumentException("Input type and output type must be different!");
         }
     }
 
@@ -144,15 +144,15 @@ public class ConvertersPaneController {
     private void checkNumberConvertInput(String input){
         if(inputTypeSpinner.getValue().equals("Decimal")){
             if(!isInt(input)){
-                throw new IllegalArgumentException("Input must be a positive integer");
+                throw new IllegalArgumentException("Input must be a positive integer!");
             }
         }else if(inputTypeSpinner.getValue().equals("Hexadecimal")){
             if(!checkHexadecimalInput(input)){
-                throw new IllegalArgumentException("Input must be digits or characters among A,B,C,D,E,F");
+                throw new IllegalArgumentException("Input must be digits or characters among A,B,C,D,E,F!");
             }
         }else if(inputTypeSpinner.getValue().equals("Binary")){
             if(!isBinary(input)){
-                throw new IllegalArgumentException("Input must be digits among 0 and 1");
+                throw new IllegalArgumentException("Input must be digits among 0 and 1!");
             }
         }
     }
@@ -242,7 +242,7 @@ public class ConvertersPaneController {
 
     private void checkEmptyField(){
         if(inputField.getText().isEmpty()){
-            throw new IllegalArgumentException("You must fill the input field (the left field)");
+            throw new IllegalArgumentException("You must fill the input field (the left field)!");
         }
     }
 

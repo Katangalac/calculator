@@ -9,7 +9,7 @@ public class ThreeEquationsSolver implements EquationSolver{
     @Override
     public List<Double> solve(List<Double> coefficients) {
         if (coefficients.size() != 12) {
-            throw new IllegalArgumentException("Wrong number of coefficients");
+            throw new IllegalArgumentException("Wrong number of coefficients!");
         }
 
         List<Double> solutions = new ArrayList<Double>();
@@ -30,7 +30,7 @@ public class ThreeEquationsSolver implements EquationSolver{
 
         double d = (a1*b2*c3 + b1*c2*a3 + c1*a2*b3) - (c1*b2*a3 + b1*a2*c3 + a1*c2*b3);
         if(d == 0){
-            throw new IllegalArgumentException("No solution found");
+            throw new IllegalArgumentException("No solution found!");
         }
 
         double dx = (d1*b2*c3 + b1*c2*d3 + c1*d2*b3) - (c1*b2*d3 + b1*d2*c3 + d1*c2*b3);
