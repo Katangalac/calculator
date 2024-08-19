@@ -2,6 +2,7 @@ package Calculator.Gui;
 
 import Calculator.Domain.CalculatorController.CalculatorController;
 import Calculator.Domain.CalculatorModelisation.TriangleSolver.TriangleType;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -78,8 +79,8 @@ public class TriangleSolverPaneController {
 
     private void initializeTriangleImagePathMap(){
         triangleImagePathMap = new HashMap<>();
-        triangleImagePathMap.put("Right triangle", "\\assets\\images\\utilities\\right_triangle.png");
-        triangleImagePathMap.put("Arbitrary triangle", "\\assets\\images\\utilities\\arbitrary_triangle.png");
+        triangleImagePathMap.put("Right triangle", "right_triangle.png");
+        triangleImagePathMap.put("Arbitrary triangle", "arbitrary_triangle.png");
     }
 
     private void initializeTriangleTypeSpinnerOptions() {

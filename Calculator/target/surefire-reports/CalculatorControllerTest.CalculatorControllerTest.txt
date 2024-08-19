@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: CalculatorControllerTest.CalculatorControllerTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.279 s -- in CalculatorControllerTest.CalculatorControllerTest

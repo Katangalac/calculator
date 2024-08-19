@@ -142,14 +142,16 @@ public class CalculatorPaneController {
 
     private void calculate(){
         String expression = screen.getText();
-        if(expression.isEmpty()){
-            previousAnswer = 0;
-        }else{
+        previousAnswer = 0;
+        try{
             previousAnswer = calculatorController.calculate(expression);
+            String result = String.valueOf(previousAnswer);
+            screen.setText(removeDecimalPart(result));
+            needClear = true;
+        }catch(Exception e){
+            screen.setText(e.getMessage());
+            needClear = true;
         }
-        String result = String.valueOf(previousAnswer);
-        screen.setText(removeDecimalPart(result));
-        needClear = true;
     }
 
     private String removeDecimalPart(String result){

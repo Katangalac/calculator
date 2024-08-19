@@ -60,7 +60,7 @@
                                  <center>
                                     <ImageView fx:id="triangleImageView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                        <image>
-                                          <Image url="@../assets/images/utilities/right_triangle.png" />
+                                          <Image url="@../right_triangle.png" />
                                        </image>
                                     </ImageView>
                                  </center>
